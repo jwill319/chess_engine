@@ -20,6 +20,12 @@ INCFLAGS := $(patsubst %/,-I%,$(dir $(wildcard $(INCDIR)/.)))
 all:
 	@$(MAKE) release
 
+.PHONY: run
+run:
+	@$(MAKE) clean
+	@$(MAKE) release
+	@$(BINDIR)/$(TARGET)
+
 .PHONY: release
 release: $(BINDIR)/$(TARGET)
 
