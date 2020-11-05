@@ -4,10 +4,9 @@
 // Bitboard type declaration
 #define U64 unsigned long long
 
-
 // Color side declaration
-#define WHITE 0
-#define BLACK 1
+#define WHITE 1
+#define BLACK 0
 
 // Square enum declaration
 typedef enum
@@ -21,6 +20,10 @@ typedef enum
     a7, b7, c7, d7, e7, f7, g7, h7,
     a8, b8, c8, d8, e8, f8, g8, h8,
 } square;
+
+// Rank definitions
+#define rank4 0x00000000FF000000
+#define rank5 0x000000FF00000000
 
 // Bitshift macros
 #define move_up(board) (board << 8)
@@ -45,6 +48,7 @@ struct game
 
 // Move mask function declarations
 U64             pawn_singlepush(U64, U64, char);
+U64             pawn_doublepush(U64, U64, char);
 
 // Debug function declaration
 #define         setsq(board, square) (board | (1ULL << square))

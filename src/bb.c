@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "bb.h"
 
-// Pawn mask function
+// Pawn move mask function
 U64
 pawn_singlepush(U64 empty, U64 pawn, char side)
 {
@@ -12,6 +12,15 @@ pawn_singlepush(U64 empty, U64 pawn, char side)
         return (empty & move_down(pawn));
     }
 }
+
+U64
+pawn_doublepush(U64 empty, U64 pawn, char side)
+{
+    U64 pawn_mask = pawn_singlepush(empty, pawn, side);
+    pawn_mask = pawn_singlepush(empty, pawn_mask, side);
+    return (side ? rank4 : rank5) & pawn_mask;
+}
+
 
 
 // Testing and debugging
